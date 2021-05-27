@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 
 def openGame ():
     lang = varL.get()
-
+    
     if  lang == "Fr":
 
         #gameEN (window)
@@ -20,7 +20,7 @@ def openGame ():
 
         #Frame right
         rightFrame = Frame(gameWindow,height = hauteurfinal, width = largeurfinal/2)
-        rightFrame.grid(row = 0, column = 1, sticky = E)
+        rightFrame.grid(row = 0, column = 1)
         rightFrame.grid_propagate(0)
 
         #Frame left
@@ -40,16 +40,17 @@ def openGame ():
 
         #Theme
         theme = var.get()
-        labeltheme = Label(leftFrame, text=theme, bg = couleurBack,fg =couleurFg)
+        labeltheme = Label(testFrame, text ="Thème : " + theme, bg = couleurBack, fg = couleurFg, font = "Times 30")
         labeltheme.grid(row = 0, column = 0)
         labeltheme.grid_propagate(0)
 
-        image = Image.open("41Kt59CjXmL.png")
+        image = Image.open("C:/Users/Thomas/Desktop/exercice du jour/41Kt59CjXmL.png")
         photo = ImageTk.PhotoImage(image)
 
-        canvasHangman = Canvas(leftFrame,width = 512,height = 512)
-        canvasHangman.create_image(0,0,image = photo)
+        canvasHangman = Label(leftFrame,padx=512,pady = 512, image = photo, bg=couleurBack)
+        label.image=photo
         canvasHangman.grid(row = 1, column = 0)
+
 
 
 
@@ -107,7 +108,7 @@ def openGame ():
 
         #Theme
         theme = var.get()
-        labeltheme = Label(leftFrame, text=theme, bg = couleurBack,fg =couleurFg)
+        labeltheme = Label(testFrame, text="Thème : " + theme, bg = couleurBack,fg =couleurFg, font = "Times 30")
         labeltheme.grid(row = 0, column = 0)
         labeltheme.grid_propagate(0)
 
@@ -128,7 +129,14 @@ def openGame ():
 
         #quit button of the game window
         quitButtonEn = Button (keyboardFrame, text = "Quit", bg = couleurBut, font = 'Times 20',command = gameWindow.destroy, activebackground = couleurFg, pady=10, padx = 30, bd = 1, fg=couleurFg, highlightthickness = 0)
-        quitButtonEn.grid ( row = 4, column = 20)
+        quitButtonEn.grid ( row = 2, column = 20)
+
+        image = Image.open("C:/Users/Thomas/Desktop/exercice du jour/41Kt59CjXmL.png")
+        photo = ImageTk.PhotoImage(image)
+
+        canvasHangman = Label(leftFrame,padx=512,pady = 512, image = photo, bg =couleurBack)
+        label.image=photo
+        canvasHangman.grid(row = 1, column = 0)
 
 
 
