@@ -1,21 +1,5 @@
-#-------------------------------------------------------------------------------
-# Name:        module1
-# Purpose:
-#
-# Author:      Thomas
-#
-# Created:     18/05/2021
-# Copyright:   (c) Thomas 2021
-# Licence:     <your licence>
-#-------------------------------------------------------------------------------
-
-def main():
-    pass
-
-if __name__ == '__main__':
-    main()
-
 from tkinter import *
+from PIL import Image, ImageTk
 
 
 
@@ -29,37 +13,43 @@ def openGame ():
         gameWindow.title ("Hangman's Turf")
         gameWindow.config (bg = couleurBack)
         gameWindow.geometry ("1360x760")
-        gameWindow.iconbitmap ("jeudupendufb.ico")
+        gameWindow.iconbitmap ("C:/Users/Thomas/Desktop/exercice du jour/jeudupendufb.ico")
         gameWindow.minsize(largeurfinal,hauteurfinal)
         gameWindow.maxsize(largeurfinal,hauteurfinal)
 
 
-        #Frame on the right side
-        rightFrame = Frame(gameWindow,height = hauteurfinal, width = largeurfinal/4*3)
+        #Frame right
+        rightFrame = Frame(gameWindow,height = hauteurfinal, width = largeurfinal/2)
         rightFrame.grid(row = 0, column = 1, sticky = E)
         rightFrame.grid_propagate(0)
 
-        #Frame on the left side
-        leftFrame = Frame(gameWindow, bg = couleurBack, height = hauteurfinal, width=largeurfinal/4)
+        #Frame left
+        leftFrame = Frame(gameWindow, bg = couleurBack, height = hauteurfinal, width=largeurfinal/2)
         leftFrame.grid(row = 0, column = 0)
         leftFrame.grid_propagate(0)
 
-
-        testFrame= Frame(rightFrame, bg = couleurBack,height = hauteurfinal/2, width = largeurfinal/4*3)
+        #Frame top right
+        testFrame= Frame(rightFrame, bg = couleurBack,height = hauteurfinal/3*2, width = largeurfinal/2)
         testFrame.grid(row = 0, column = 0)
         testFrame.grid_propagate(0)
 
-        #Keyboard Frame placed in the bottom right corner
-        keyboardFrame= Frame(rightFrame, bg = couleurBack,height = hauteurfinal/2, width = largeurfinal/4*3)
+        #Frame bottom right
+        keyboardFrame= Frame(rightFrame, bg = couleurBack,height = hauteurfinal/3, width = largeurfinal/2)
         keyboardFrame.grid(row = 1, column = 0)
         keyboardFrame.grid_propagate(0)
 
-
-
+        #Theme
         theme = var.get()
         labeltheme = Label(leftFrame, text=theme, bg = couleurBack,fg =couleurFg)
         labeltheme.grid(row = 0, column = 0)
         labeltheme.grid_propagate(0)
+
+        image = Image.open("41Kt59CjXmL.png")
+        photo = ImageTk.PhotoImage(image)
+
+        canvasHangman = Canvas(leftFrame,width = 512,height = 512)
+        canvasHangman.create_image(0,0,image = photo)
+        canvasHangman.grid(row = 1, column = 0)
 
 
 
@@ -69,18 +59,18 @@ def openGame ():
 
         for premier in range(2):
                 for second in range(10):
-                    btn = Button (keyboardFrame,text=ALPHA[10*premier + second],font='times 35',bg = couleurBut,fg =couleurFg, activebackground = "red")
+                    btn = Button (keyboardFrame,text=ALPHA[10*premier + second],font='times 30',bg = couleurBut,fg =couleurFg, activebackground = couleurFg,width = 2)
                     btn.grid(row=premier+2, column=second+2)
 
 
         for second in range(6):
-            btn = Button(keyboardFrame, text=ALPHA[20 + second], font='Times 35',bg = couleurBut,fg =couleurFg, activebackground = "red")
+            btn = Button(keyboardFrame, text=ALPHA[20 + second], font='Times 30',bg = couleurBut,fg =couleurFg, activebackground = couleurFg,width = 2)
             btn.grid(row=4, column=second + 4)
 
 
         #quit button of the game window
-        quitButton2 = Button (keyboardFrame, text = "Quit", bg = couleurBut, font = 'Times 30',command = gameWindow.destroy, activebackground = "red", pady=10, padx = 30, bd = 1, fg=couleurFg, highlightthickness = 0)
-        quitButton2.grid ( row = 5, column = 20)
+        quitButton2 = Button (keyboardFrame, text = "Quit", bg = couleurBut, font = 'Times 20',command = gameWindow.destroy, activebackground = couleurFg, pady=10, padx = 30, bd = 1, fg=couleurFg, highlightthickness = 0)
+        quitButton2.grid ( row = 4, column = 20)
 
     elif lang == "En":
 
@@ -89,58 +79,58 @@ def openGame ():
         gameWindow.title ("Hangman's Turf")
         gameWindow.config (bg = couleurBack)
         gameWindow.geometry ("1360x760")
-        gameWindow.iconbitmap ("jeudupendufb.ico")
+        gameWindow.iconbitmap ("C:/Users/Thomas/Desktop/exercice du jour/jeudupendufb.ico")
         gameWindow.minsize(largeurfinal,hauteurfinal)
         gameWindow.maxsize(largeurfinal,hauteurfinal)
 
 
-        #Frame on the right side
-        rightFrame = Frame(gameWindow,height = hauteurfinal, width = largeurfinal/4*3)
+        #Frame right
+        rightFrame = Frame(gameWindow,height = hauteurfinal, width = largeurfinal/2)
         rightFrame.grid(row = 0, column = 1, sticky = E)
         rightFrame.grid_propagate(0)
 
-        #Frame on the left side
-        leftFrame = Frame(gameWindow, bg = couleurBack, height = hauteurfinal, width=largeurfinal/4)
+        #Frame left
+        leftFrame = Frame(gameWindow, bg = couleurBack, height = hauteurfinal, width=largeurfinal/2)
         leftFrame.grid(row = 0, column = 0)
         leftFrame.grid_propagate(0)
 
-
-        testFrame= Frame(rightFrame, bg = couleurBack,height = hauteurfinal/2, width = largeurfinal/4*3)
+        #frame top right
+        testFrame= Frame(rightFrame, bg = couleurBack,height = hauteurfinal/3*2, width = largeurfinal/2)
         testFrame.grid(row = 0, column = 0)
         testFrame.grid_propagate(0)
 
-        #Keyboard Frame placed in the bottom right corner
-        keyboardFrame= Frame(rightFrame, bg = couleurBack,height = hauteurfinal/2, width = largeurfinal/4*3)
+        #Frame bottom right
+        keyboardFrame= Frame(rightFrame, bg = couleurBack,height = hauteurfinal/3, width = largeurfinal/2)
         keyboardFrame.grid(row = 1, column = 0)
         keyboardFrame.grid_propagate(0)
 
 
-
+        #Theme
         theme = var.get()
         labeltheme = Label(leftFrame, text=theme, bg = couleurBack,fg =couleurFg)
         labeltheme.grid(row = 0, column = 0)
         labeltheme.grid_propagate(0)
 
-
-
-
-        #keyboard
-        ALPHA = "QWERTYUIOPASDFGHJKLZXCVBNM"
-
-        for premier in range(2):
-                for second in range(10):
-                    btn = Button (keyboardFrame,text=ALPHA[10*premier + second],font='times 35',bg = couleurBut,fg =couleurFg, activebackground = "red")
-                    btn.grid(row=premier+2, column=second+2)
-
-
-        for second in range(7):
-            btn = Button(keyboardFrame, text=ALPHA[20 + second], font='Times 35',bg = couleurBut,fg =couleurFg, activebackground = "red")
-            btn.grid(row=4, column=second + 4)
+        #Keyboard
+        Alpha = "QWERTYUIOP"
+        for premier in range(10):
+            btnP = Button (keyboardFrame,text=Alpha[premier],font='times 30',bg = couleurBut,fg =couleurFg, activebackground = couleurFg, width=2)
+            btnP.grid(row = 0,column = premier)
+        Beta = "ASDFGHJKL"
+        for second in range(9):
+            btnS = Button (keyboardFrame,text=Beta[second],font='times 30',bg = couleurBut,fg =couleurFg, activebackground = couleurFg, width=2)
+            btnS.grid(row=1,column = second)
+        Gamma = "ZXCVBNM"
+        for tri in range(7):
+            btnT = Button (keyboardFrame,text=Gamma[tri],font='times 30',bg = couleurBut,fg =couleurFg, activebackground = couleurFg, width=2)
+            btnT.grid(row = 2, column = tri+2)
 
 
         #quit button of the game window
-        quitButton2 = Button (keyboardFrame, text = "Quit", bg = couleurBut, font = 'Times 30',command = gameWindow.destroy, activebackground = "red", pady=10, padx = 30, bd = 1, fg=couleurFg, highlightthickness = 0)
-        quitButton2.grid ( row = 5, column = 20)
+        quitButtonEn = Button (keyboardFrame, text = "Quit", bg = couleurBut, font = 'Times 20',command = gameWindow.destroy, activebackground = couleurFg, pady=10, padx = 30, bd = 1, fg=couleurFg, highlightthickness = 0)
+        quitButtonEn.grid ( row = 4, column = 20)
+
+
 
 def rules():
     lang = varL.get()
@@ -152,6 +142,8 @@ def rules():
         règles.config(fg = couleurBack)
         règlesEn.config(fg=couleurFg)
 
+
+
 def credits():
 
 
@@ -160,13 +152,13 @@ def credits():
     creditswindow.minsize(int(largeurfinal/2),int(hauteurfinal/2))
     creditswindow.maxsize(int(largeurfinal/2),int(hauteurfinal/2))
     creditswindow.config(bg=couleurBack)
-    creditswindow.iconbitmap ("jeudupendufb.ico")
+    creditswindow.iconbitmap ("C:/Users/Thomas/Desktop/exercice du jour/jeudupendufb.ico")
 
 
     creditsLabel = Label(creditswindow, text="créé par:\n\nAdam\nAzadeh\nThais\nHanan\nThomas", fg=couleurFg, bg = couleurBack)
     creditsLabel.pack()
 
-    quitButCredits = Button(creditswindow,text = "Quit", command = creditswindow.destroy, bg = couleurBut, fg = couleurFg, activebackground = "red", pady = 10, padx = 30)
+    quitButCredits = Button(creditswindow,text = "Quit", command = creditswindow.destroy, bg = couleurBut, fg = couleurFg, activebackground = couleurFg, pady = 10, padx = 30)
     quitButCredits.pack(side = "bottom")
 
 
@@ -177,7 +169,7 @@ couleurFg = "#bd2013"
 
 #main window
 main = Tk()
-main.iconbitmap ("jeudupendufb.ico")
+main.iconbitmap ("C:/Users/Thomas/Desktop/exercice du jour/jeudupendufb.ico")
 main.config (background = couleurBack)
 main.title ("Hangman")
 main.geometry("1360x760")
@@ -189,31 +181,23 @@ main.minsize(largeurfinal,hauteurfinal)
 main.maxsize(largeurfinal,hauteurfinal)
 
 
-#detecteur de fenetre ouverte
-##windowGame = False
-##windowRules = False
-##windowCredits = False
-
-
-
-
 
 
 label = Label (main, text = "Welcome to Hangman's game",font =("courrier",20), bg =couleurBack, fg = couleurFg)
 label.pack (expand = YES)
 
 
-quitBut = Button (main, text = "Quit", command = main.destroy, bg = couleurBut,pady = 10, padx = 30, activebackground = "red", fg=couleurFg)
+quitBut = Button (main, text = "Quit", command = main.destroy, bg = couleurBut,pady = 10, padx = 30, activebackground = couleurFg, fg=couleurFg)
 quitBut.pack (side = "bottom", expand = YES)
 
-butCredits = Button(main, text = "Credits",command = credits, bg = couleurBut, fg =couleurFg,pady = 10, padx = 26, activebackground = "red")
+butCredits = Button(main, text = "Credits",command = credits, bg = couleurBut, fg =couleurFg,pady = 10, padx = 26, activebackground = couleurFg)
 butCredits.pack(side="bottom", expand = YES)
 
-butRules = Button(main, command = rules, text = "Rules", pady = 10, padx = 30, activebackground = "red", fg=couleurFg, bg = couleurBut)
+butRules = Button(main, command = rules, text = "Rules", pady = 10, padx = 30, activebackground = couleurFg, fg=couleurFg, bg = couleurBut)
 butRules.pack(side = "bottom", expand = YES)
 
-but = Button (main, text = "Start", command = openGame, bg=couleurBut, pady=10, padx = 30, bd = 1, activebackground = "red", fg=couleurFg)
-but.pack (side = "bottom", expand = YES)
+startbut = Button (main, text = "Start", command = openGame, bg=couleurBut, pady=10, padx = 30, bd = 1, activebackground = couleurFg, fg=couleurFg)
+startbut.pack (side = "bottom", expand = YES)
 
 règles = Label(main, text = "Règles du jeu du Pendu :\n\nCliquez sur Start pour commencer une nouvelle partie. \nCliquez sur les lettres en bas que vous souhaitez proposer dans le mot. \nPour chaque lettre non présente dans le mot, le dessin du pendu s'affichera.\nLe but étant de ne pas se faire pendre.", bg = couleurBack, font = ("Courrier", 15), fg =couleurBack)
 règles.pack(side = "top", expand = YES)
@@ -232,10 +216,10 @@ déroulantL.pack(side="bottom")
 
 
 
-
+#DropDown menu
 var= StringVar(main)
 var.set("Cinéma")
-#DropDown menu
+
 deroulant = OptionMenu(main, var, "Cinéma", "Sport", "Capitales")
 deroulant.config(bg = couleurBack,bd = 0,highlightthickness=1, activebackground = couleurBack, fg = couleurFg, justify = "center",highlightbackground = couleurBut)
 deroulant.pack(side = "bottom")
