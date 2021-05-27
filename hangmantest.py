@@ -2,6 +2,9 @@ from tkinter import *
 from PIL import Image, ImageTk
 
 
+def btn_command(btn):    
+    print(btn)
+    return btn
 
 def openGame ():
     lang = varL.get()
@@ -17,7 +20,7 @@ def openGame ():
         gameWindow.minsize(largeurfinal,hauteurfinal)
         gameWindow.maxsize(largeurfinal,hauteurfinal)
 
-
+        
         #Frame right
         rightFrame = Frame(gameWindow,height = hauteurfinal, width = largeurfinal/2)
         rightFrame.grid(row = 0, column = 1)
@@ -51,23 +54,25 @@ def openGame ():
         label.image=photo
         canvasHangman.grid(row = 1, column = 0)
 
+        labelRe = StringVar()
+        labelRe.set(btn_command)
+        labelReponse = Label(testFrame, text = labelRe, bg = couleurBack, font = 'times 20', fg = couleurFg)
+        labelReponse.grid(row = 1, column = 0)
 
-
-
-
+    
         #keyboard
         ALPHA = "AZERTYUIOPQSDFGHJKLMWXCVBN"
 
         for premier in range(2):
                 for second in range(10):
-                    btn = Button (keyboardFrame,text=ALPHA[10*premier + second],font='times 30',bg = couleurBut,fg =couleurFg, activebackground = couleurFg,width = 2)
+                    btn = Button (keyboardFrame,text=ALPHA[10*premier + second],font='times 30',bg = couleurBut,fg =couleurFg, activebackground = couleurFg,width = 2, command =lambda q=ALPHA[10*premier+second]:btn_command(q))
                     btn.grid(row=premier+2, column=second+2)
 
 
         for second in range(6):
-            btn = Button(keyboardFrame, text=ALPHA[20 + second], font='Times 30',bg = couleurBut,fg =couleurFg, activebackground = couleurFg,width = 2)
+            btn = Button(keyboardFrame, text=ALPHA[20 + second], font='Times 30',bg = couleurBut,fg =couleurFg, activebackground = couleurFg,width = 2,command = lambda q=ALPHA[20+second]:btn_command(q))
             btn.grid(row=4, column=second + 4)
-
+       
 
         #quit button of the game window
         quitButton2 = Button (keyboardFrame, text = "Quit", bg = couleurBut, font = 'Times 20',command = gameWindow.destroy, activebackground = couleurFg, pady=10, padx = 30, bd = 1, fg=couleurFg, highlightthickness = 0)
@@ -237,6 +242,26 @@ labelTheme.pack(side = "bottom")
 
 
 main.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
