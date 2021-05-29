@@ -26,17 +26,13 @@ def LireFichierCapitales(fichier):
             #print(row['Capitale'], row['Pays'])
             CreationDictionnaire(row['Pays'], row['Capitale'])
 
-    DicCapitales.keys()
-    print(DicCapitales)
+    return DicCapitales
 
 
 def CreationDictionnaire(dicKey, dicValue):
     """Docstring: Creation dans un dictionnaire a partir d'une clef et son valeur"""
     DicCapitales[dicKey] = dicValue
 
-LireFichierCapitales("liste_des_capitales.csv")
-
-#print(DicCapitales.get("Malte"))
 
 
 
