@@ -45,12 +45,12 @@ def btn_command(btn):
             if index !=-1:
                 start = index + 1
                 #Montré dans le frame du __ __ __ l'index trouvé
-                tempMot[index] =  btn + " "
+                tempMot[index] =  btn + "  "
 
         labeldico = Label(testFrame, textvariable = labeldic, font = "times 30")
-        labeldico.place(x = 200, y = 300)
+        labeldico.place(x = 100, y = 300)
         #converstion de la list en chaine et remotion des , et []
-        tempMotString = "  ".join(tempMot)
+        tempMotString = "".join(tempMot)
         labeldic.set(tempMotString)
 
 
@@ -119,7 +119,7 @@ def openGame ():
 
         labeldic= StringVar()
         labeldico = Label(testFrame, textvariable = labeldic, font = "times 30")
-        labeldico.place(x = 200, y = 300)
+        labeldico.place(x = 100, y = 300)
 
 
 
