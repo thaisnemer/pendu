@@ -11,14 +11,14 @@ def ModifierImage(step):
     global leftFrame
 
     switcher={
-                1:'2.png',
-                2:'3.png',
-                3:'4.png',
-                4:'5.png',
-                5:'6.png',
-                6:'7.png',
-                7: 'perdu.png',
-                8:'gagnier.png'
+                1:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/2.png',
+                2:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/3.png',
+                3:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/4.png',
+                4:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/5.png',
+                5:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/6.png',
+                6:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/7.png',
+                7: 'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/perdu.png',
+                8:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/gagnier.png'
              }
 
     test = switcher.get(step)
@@ -127,7 +127,7 @@ def openGame ():
         gameWindow.title ("Hangman's Turf")
         gameWindow.config (bg = couleurBack)
         gameWindow.geometry ("1360x760")
-        gameWindow.iconbitmap ("jeudupendufb.ico")
+        gameWindow.iconbitmap ("C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\jeudupendufb.ico")
         gameWindow.minsize(largeurfinal,hauteurfinal)
         gameWindow.maxsize(largeurfinal,hauteurfinal)
 
@@ -158,7 +158,7 @@ def openGame ():
         labeltheme.grid(row = 0, column = 0)
         labeltheme.grid_propagate(0)
 
-        image = Image.open("1.png")
+        image = Image.open("C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/1.png")
         photo = ImageTk.PhotoImage(image)
 
         canvasHangman = Label(leftFrame,padx=512,pady = 512, image = photo, bg=couleurBack)
@@ -204,16 +204,17 @@ def openGame ():
 
         for premier in range(2):
                 for second in range(10):
-                    btn = Button (keyboardFrame,text=ALPHA[10*premier + second],font='times 30',bg = couleurBut,fg =couleurFg, activebackground = couleurFg,width = 2, command =lambda a=ALPHA[10*premier+second]:btn_command(a))
+                    btn = Button (keyboardFrame,text=ALPHA[10*premier + second],font='times 15',width = largeurBut, height = hauteurBut,bg = couleurBut,fg =couleurFg, activebackground = couleurFg, command =lambda q=ALPHA[10*premier+second]:btn_command(q))
                     btn.grid(row=premier+2, column=second+2)
 
+
         for second in range(6):
-            btn = Button(keyboardFrame, text=ALPHA[20 + second], font='Times 30',bg = couleurBut,fg =couleurFg, activebackground = couleurFg,width = 2,command = lambda a=ALPHA[20+second]:btn_command(a))
+            btn = Button(keyboardFrame, text=ALPHA[20 + second],width = largeurBut, height = hauteurBut, font='Times 15',bg = couleurBut,fg =couleurFg, activebackground = couleurFg,command = lambda q=ALPHA[20+second]:btn_command(q))
             btn.grid(row=4, column=second + 4)
 
 
         #quit button of the game window
-        quitButton2 = Button (keyboardFrame, text = "Quit", bg = couleurBut, font = 'Times 20',command = gameWindow.destroy, activebackground = couleurFg, pady=10, padx = 30, bd = 1, fg=couleurFg, highlightthickness = 0)
+        quitButton2 = Button (keyboardFrame, text = "Quit", bg = couleurBut, font = 'Times 15',command = gameWindow.destroy, activebackground = couleurFg, width = largeurBut, height = hauteurBut, bd = 1, fg=couleurFg, highlightthickness = 0)
         quitButton2.grid ( row = 4, column = 20)
 
 #---------------------------------------------------------------------------------En-----------------------------------------------------------------
@@ -328,7 +329,7 @@ couleurFg = "#bd2013"
 
 #main window
 main = Tk()
-main.iconbitmap ("jeudupendufb.ico")
+main.iconbitmap ("C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\jeudupendufb.ico")
 main.config (background = couleurBack)
 main.title ("Hangman")
 main.geometry("1360x760")
@@ -336,6 +337,8 @@ largeur = main.winfo_screenwidth()
 hauteur = main.winfo_screenheight()
 largeurfinal = int(largeur / 4 * 3)
 hauteurfinal = int(hauteur / 4 * 3)
+largeurBut = int(largeurfinal/250)
+hauteurBut = int(hauteurfinal/250)
 main.minsize(largeurfinal,hauteurfinal)
 main.maxsize(largeurfinal,hauteurfinal)
 
