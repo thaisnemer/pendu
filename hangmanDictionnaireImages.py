@@ -4,7 +4,7 @@ import random
 import importFile as iFile
 import csv
 
-liste = []
+#liste = []
 
 
 def ModifierImage(step):
@@ -42,6 +42,7 @@ def btn_command(btn):
     global leftFrame
     global testFrame
     global gagnier
+    global liste
 
     if btn in liste:
         #pass
@@ -56,6 +57,9 @@ def btn_command(btn):
     #Verification si la lettre partian au Mot secret:
     #On verifie combiens d'occurence de lettre existe dans Mot(motchoisi)
     count = motchoisi.count(btn)
+
+    print(count)
+    print(liste)
 
     labeldic = StringVar()
     motPartiel = labeldic.get()
@@ -115,7 +119,9 @@ def openGame ():
     global labeldico
     global tempMot
     global gagnier
+    global liste
 
+    liste = []
 
     lang = varL.get()
 #---------------------------------------------------------------------------------Fr-----------------------------------------------------------------
