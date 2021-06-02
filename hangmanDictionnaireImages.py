@@ -11,14 +11,14 @@ def ModifierImage(step):
     global leftFrame
 
     switcher={
-                1:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/2.png',
-                2:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/3.png',
-                3:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/4.png',
-                4:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/5.png',
-                5:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/6.png',
-                6:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/7.png',
-                7: 'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/perdu.png',
-                8:'C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/gagnier.png'
+                1:'2.png',
+                2:'3.png',
+                3:'4.png',
+                4:'5.png',
+                5:'6.png',
+                6:'7.png',
+                7:'perdu.png',
+                8:'gagnier.png'
              }
 
     test = switcher.get(step)
@@ -86,7 +86,6 @@ def btn_command(btn):
 
     else:
         #on ajoute dans la liste superieur, les lettres qui ne font pas parties du mot choisi
-        print("append-list")
         liste.append(btn)
         labelRe = StringVar()
         labelRe.set(liste)
@@ -127,7 +126,7 @@ def openGame ():
         gameWindow.title ("Hangman's Turf")
         gameWindow.config (bg = couleurBack)
         gameWindow.geometry ("1360x760")
-        gameWindow.iconbitmap ("C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\jeudupendufb.ico")
+        gameWindow.iconbitmap ("jeudupendufb.ico")
         gameWindow.minsize(largeurfinal,hauteurfinal)
         gameWindow.maxsize(largeurfinal,hauteurfinal)
 
@@ -158,7 +157,7 @@ def openGame ():
         labeltheme.grid(row = 0, column = 0)
         labeltheme.grid_propagate(0)
 
-        image = Image.open("C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\Photos pendus - Modifiées/1.png")
+        image = Image.open("1.png")
         photo = ImageTk.PhotoImage(image)
 
         canvasHangman = Label(leftFrame,padx=512,pady = 512, image = photo, bg=couleurBack)
@@ -170,34 +169,40 @@ def openGame ():
         labeldico.place(x = 100, y = 300)
 
 
-
-        #lecture du fichier des capitales et creation dictionnaire
-        dico = iFile.LireFichierCapitales("liste_des_capitales.csv")
-        #print(dico[0])
+        #print(theme)
+        if theme == "Capitales":
+            #lecture du fichier des capitales et creation dictionnaire
+            dico = iFile.LireFichierCapitales("liste_des_capitales.csv")
+        else:
+            dico = iFile.LireFichierPlanetes("Planetes.txt")
 
         #choix aleatoire du Mot
         motchoisi = random.choice(list(dico.values()))
-        #motchoisi = random.choice(dico.values())
         print(motchoisi)
+
+        #motchoisi = "qqqq-qqqqq"
+
 
         listetmpdico = []
 
-        if var.get() == "Capitales":
-            for i in motchoisi:
-                listetmpdico.append(i)
-                for j in range(len(listetmpdico)):
-                    labeldic.set("__ "*(j+1))
-                    #tempMot.insert(j, "__ ")
+        #if var.get() == "Capitales":
+        for i in motchoisi:
+            listetmpdico.append(i)
+            for j in range(len(listetmpdico)):
+                labeldic.set("__ "*(j+1))
+                #tempMot.insert(j, "__ ")
 
-        #Thais: garde les espace __ dans une liste pour l'utiliser après
-        print(len(motchoisi))
+        #On Garde les espace __ dans une liste pour l'utiliser après
         tempMot = []
         for i in range(len(motchoisi)):
             tempMot.insert(i, "__ ")
+            #on verifie si le mot a des - et on l'ajoute
+            if motchoisi[i]=="-":
+                tempMot.insert(i, "-  ")
+
 
         #on inicialise la variable gagnier avec 0. C'est un compteur pour informer si le jouer a gagné =)
         gagnier = 0
-        #fin---
 
         #keyboard
         ALPHA = "AZERTYUIOPQSDFGHJKLMWXCVBN"
@@ -329,7 +334,7 @@ couleurFg = "#bd2013"
 
 #main window
 main = Tk()
-main.iconbitmap ("C:/Users\Thomas\Desktop\exercice du jour\pendu\pendu-main\jeudupendufb.ico")
+main.iconbitmap ("jeudupendufb.ico")
 main.config (background = couleurBack)
 main.title ("Hangman")
 main.geometry("1360x760")
@@ -380,7 +385,7 @@ déroulantL.pack(side="bottom")
 var= StringVar(main)
 var.set("Capitales")
 
-deroulant = OptionMenu(main, var, "Cinéma", "Sport", "Capitales")
+deroulant = OptionMenu(main, var, "Planetes", "Capitales")
 deroulant.config(bg = couleurBack,bd = 0,highlightthickness=1, activebackground = couleurBack, fg = couleurFg, justify = "center",highlightbackground = couleurBut)
 deroulant.pack(side = "bottom")
 
