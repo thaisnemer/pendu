@@ -74,7 +74,7 @@ def btn_command(btn):
                 gagnier += 1
                 print(gagnier)
 
-        labeldico = Label(testFrame, textvariable = labeldic, font = "times 30")
+        labeldico = Label(testFrame, textvariable = labeldic, font = "times 30",  bg = couleurBack)
         labeldico.place(x = 100, y = 300)
         #converstion de la list en chaine et remotion des , et []
         tempMotString = "".join(tempMot)
@@ -165,7 +165,7 @@ def openGame ():
         canvasHangman.grid(row = 1, column = 0)
 
         labeldic= StringVar()
-        labeldico = Label(testFrame, textvariable = labeldic, font = "times 30")
+        labeldico = Label(testFrame, textvariable = labeldic, font = "times 30",  bg = couleurBack)
         labeldico.place(x = 100, y = 300)
 
 
@@ -180,8 +180,7 @@ def openGame ():
         motchoisi = random.choice(list(dico.values()))
         print(motchoisi)
 
-        #motchoisi = "qqqq-qqqqq"
-
+        #motchoisi = "test-test"
 
         listetmpdico = []
 
