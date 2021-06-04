@@ -43,67 +43,75 @@ def btn_command(btn):
     global testFrame
     global gagnier
     global liste
+    global listeComplete
 
-    if btn in liste:
-        #pass
+    #On bloque le clavier dans 3 conditions: touche n'a pas été utilisé; le jouer a gagné ou il a perdu
+    if (btn in listeComplete):
+        #print(listeComplete)
         return btn
 
-    #else:
-
-    #On force la maiuscule pour éviter des differances
-    motchoisi = motchoisi.upper()
-
-    countTemp = len(motchoisi)
-    #Verification si la lettre partian au Mot secret:
-    #On verifie combiens d'occurence de lettre existe dans Mot(motchoisi)
-    count = motchoisi.count(btn)
-
-    print(count)
-    print(liste)
-
-    labeldic = StringVar()
-    motPartiel = labeldic.get()
-
-    if count > 0:
-        start = 0
-        index = start
-        #for i in range(count):
-        while index != -1:
-            index = motchoisi.find(btn, start, len(motchoisi)) #recupère l'index de la lettre correct
-            if index !=-1:
-                start = index + 1
-                #Montré dans le frame du __ __ __ l'index trouvé
-                tempMot[index] =  btn + "  "
-                #on increment la variable gagnier
-                gagnier += 1
-                print(gagnier)
-
-        labeldico = Label(testFrame, textvariable = labeldic, font = "times 30",  bg = couleurBack)
-        labeldico.place(x = 100, y = 300)
-        #converstion de la list en chaine et remotion des , et []
-        tempMotString = "".join(tempMot)
-        labeldic.set(tempMotString)
-
-        #on verifier s'il a gagnier et on change l'image du leftframe
-        if gagnier == len(motchoisi):
-            ModifierImage(8)
-
     else:
-        #on ajoute dans la liste superieur, les lettres qui ne font pas parties du mot choisi
-        liste.append(btn)
-        labelRe = StringVar()
-        labelRe.set(liste)
-        labelReponse = Label(testFrame, textvariable = labelRe, bg = couleurBack, fg = couleurFg)
-        labelReponse.grid(row=1, column = 0)
 
-        #on change l'image du leftframe
-        if len(liste) > 7:
-           ModifierImage(7) #le jouer a perdu
+        #On force la maiuscule pour éviter des differances
+        motchoisi = motchoisi.upper()
+
+        countTemp = len(motchoisi)
+        #Verification si la lettre partian au Mot secret:
+        #On verifie combiens d'occurence de lettre existe dans Mot(motchoisi)
+        count = motchoisi.count(btn)
+
+        labeldic = StringVar()
+        motPartiel = labeldic.get()
+
+        listeComplete.append(btn)
+
+        if count > 0:
+            start = 0
+            index = start
+            #for i in range(count):
+            while index != -1:
+                index = motchoisi.find(btn, start, len(motchoisi)) #recupère l'index de la lettre correct
+                if index !=-1:
+                    start = index + 1
+                    #Montré dans le frame du __ __ __ l'index trouvé
+                    tempMot[index] =  btn + "  "
+                    #on increment la variable gagnier
+                    gagnier += 1
+                    print(gagnier)
+
+            labeldico = Label(testFrame, textvariable = labeldic, font = "times 30",  bg = couleurBack)
+            labeldico.place(x = 100, y = 300)
+            #converstion de la list en chaine et remotion des , et []
+            tempMotString = "".join(tempMot)
+            labeldic.set(tempMotString)
+
+            #on verifier s'il a gagnier et on change l'image du leftframe
+            if gagnier == len(motchoisi):
+                #Si a gangé on bloque tout le clavier
+                listeComplete = ["A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P", "Q", "S", "D", "F", "G", "H", "J", "K", "L", "M", "W", "X", "C", "V", "B", "N"]
+                ModifierImage(8)
+
         else:
-            ModifierImage(len(liste))
+            #on ajoute dans la liste superieur, les lettres qui ne font pas parties du mot choisi
+            liste.append(btn)
+
+            listeComplete.append(btn)
+
+            labelRe = StringVar()
+            labelRe.set(liste)
+            labelReponse = Label(testFrame, textvariable = labelRe, bg = couleurBack, fg = couleurFg)
+            labelReponse.grid(row=1, column = 0)
+
+            #on change l'image du leftframe
+            if len(liste) > 7:
+               #Si a perdu on bloque tout le clavier
+               listeComplete = ["A", "Z", "E", "R", "T", "Y", "U", "I", "O", "P", "Q", "S", "D", "F", "G", "H", "J", "K", "L", "M", "W", "X", "C", "V", "B", "N"]
+               ModifierImage(7) #le jouer a perdu
+            else:
+                ModifierImage(len(liste))
 
 
-    return btn
+    #return btn
 #----------------------------------------------------------------------------------------------------------------------------------------------------
 #second window(game window)
 def openGame ():
@@ -120,8 +128,10 @@ def openGame ():
     global tempMot
     global gagnier
     global liste
+    global listeComplete
 
     liste = []
+    listeComplete = []
 
     lang = varL.get()
 #---------------------------------------------------------------------------------Fr-----------------------------------------------------------------
@@ -174,8 +184,6 @@ def openGame ():
         labeldico = Label(testFrame, textvariable = labeldic, font = "times 30",  bg = couleurBack)
         labeldico.place(x = 100, y = 300)
 
-
-        #print(theme)
         if theme == "Capitales":
             #lecture du fichier des capitales et creation dictionnaire
             dico = iFile.LireFichierCapitales("liste_des_capitales.csv")
@@ -186,7 +194,7 @@ def openGame ():
         motchoisi = random.choice(list(dico.values()))
         print(motchoisi)
 
-        #motchoisi = "test-test"
+        #motchoisi = "Tripoli"
 
         listetmpdico = []
 
@@ -382,9 +390,9 @@ règlesEn.pack(side = "top", expand = YES)
 #dropdown for language
 varL=StringVar(main)
 varL.set("Fr")
-déroulantL= OptionMenu(main, varL,"Fr","En")
-déroulantL.config(bg = couleurBack,bd = 0,highlightthickness=1, activebackground = couleurBack, fg = couleurFg, justify = "center",highlightbackground = couleurBut)
-déroulantL.pack(side="bottom")
+déroulantL= OptionMenu(main, varL,"Fr")
+#déroulantL.config(bg = couleurBack,bd = 0,highlightthickness=1, activebackground = couleurBack, fg = couleurFg, justify = "center",highlightbackground = couleurBut)
+#déroulantL.pack(side="bottom")
 
 #DropDown menu
 var= StringVar(main)

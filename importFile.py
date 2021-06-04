@@ -54,11 +54,11 @@ def CreationDictionnaire(dicKey, dicValue):
     index = dicValue.find(" ")
     #si ça retourne -1 ça veut dire qu'il n'a pas d'espace y on peut ajouter la capitale aux dictionnaire
 
-    #si le Mot a plus de 10 character, c'est trop grand pour être afficher(la fin est coupé), alors on les enleves de notre dictonnaire des capitales
+    #si le Mot a plus de 10 characters, c'est trop grand pour être afficher(la fin est coupé), alors on les enleves de notre dictonnaire des capitales
     if len(dicValue) < 11 and index == -1:
         DicCapitales[dicKey] = dicValue
 
 
-print(LireFichierCapitales("liste_des_capitales.csv"))
+#print(LireFichierCapitales("liste_des_capitales.csv"))
 #print(LireFichierPlanetes("Planetes.txt"))
 
