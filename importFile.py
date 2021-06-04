@@ -52,10 +52,12 @@ def CreationDictionnaire(dicKey, dicValue):
 
     #si il y a des espace dans la Capitale(dicValue) on n'ajoute pas au dictionnaire
     index = dicValue.find(" ")
+
+    indexCar = dicValue.find("?")
     #si ça retourne -1 ça veut dire qu'il n'a pas d'espace y on peut ajouter la capitale aux dictionnaire
 
     #si le Mot a plus de 10 characters, c'est trop grand pour être afficher(la fin est coupé), alors on les enleves de notre dictonnaire des capitales
-    if len(dicValue) < 11 and index == -1:
+    if len(dicValue) < 11 and index == -1 and indexCar ==-1:
         DicCapitales[dicKey] = dicValue
 
 
